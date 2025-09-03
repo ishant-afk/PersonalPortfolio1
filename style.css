@@ -1,0 +1,314 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "General Sans";
+    box-sizing: border-box;
+}
+
+html,body{
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+}
+
+#cursorcircle {
+    transition: cubic-bezier(0.19, 1, 0.22, 1) 0.2s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;  /* your size */
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none; /* let clicks pass through */
+    z-index: 999; /* always on top */
+    will-change: transform; /* GPU acceleration */
+}
+
+
+#main{
+    width: 100%;
+    background-color: black;
+}
+
+.bounding{
+    width: fit-content;
+    /* background-color: red; */
+    overflow: hidden;
+}
+
+.bounding .boundingelem{
+    transform: translateY(100%);
+}
+
+#home{
+    position: relative;
+    padding-top: 10px;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    color: white;
+
+}
+
+#nav{
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 20px;
+    
+}
+
+#nav a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+#menuBtn {
+  opacity: 1;
+  transition: opacity 0.5s ease; /* smooth fade in/out */
+}
+#heading{
+    padding-top: 30px;
+}
+
+#heading h1{
+    margin-left: 30px;
+    opacity: 0.6;
+    line-height: 1;
+    font-weight: 500;
+    /* font-family: "General Sans Medium"; */
+    font-size: 9vw;
+    text-transform: uppercase;
+    /* margin-bottom: 20px; */
+}
+
+#heading #secondh1{
+    margin-left: 150px;
+}
+
+#headingSide{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    color: white;
+    opacity: 0.8;
+    font-size: 3.5vw;
+    margin-top: 10vh;
+    padding-right: 30px;
+    text-align: right;
+}
+
+
+#homefooter{
+    padding: 0 2vw;
+    width: 100%;
+    position: absolute;
+    bottom: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#homefooter a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+#homefooter #iconset{
+    font-size: 25px;
+    opacity: 0.6;
+    display: flex;
+}
+
+
+#secondpage{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    color: white;
+    background-color: black;
+    /* padding-top: 200px; */
+    padding-left: 3vw;
+    padding-right: 8vw;
+}
+
+.elem{
+    /* width: 85%; */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3.5vw 1vw;
+    padding-right: 0;
+    border-top: solid 1px white;
+}
+.dummyelem{
+    /* width: 85%; */
+    position: relative;
+    display: flex;
+    height: 18vh;
+    padding: 3.5vw 1vw;
+    padding-right: 0;
+}
+
+.elem h1{
+    font-size: 5vw;
+    font-weight: 500;
+    opacity: .7;
+    text-transform: uppercase;
+}
+
+.elemlast{
+    border-bottom: solid 1px white;
+}
+
+.elem img{
+    opacity: 0;
+    height: 140%;
+    /* display: none; */
+    position: absolute;
+    z-index: 999;
+}
+
+#about{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 50px;
+    padding: 10vw 10vw;
+    padding-left: 25vw;
+    width: 100vw;
+    /* height: 100vh; */
+    background-color: black;
+    color: white;
+    /* padding-left: 30vw; */
+}
+
+#about img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#textabout{
+    width: 25rem;
+}
+
+#textabout h5{
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+#textabout p{
+    /* opacity: 0.8; */
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+#textabout a{
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    color: white;
+    /* font-weight: 500; */
+    border: solid 1px white;
+    border-radius: 100px;
+}
+
+
+#connect{
+    color: white;
+    background-color: black;
+    padding: 20px 20px;
+    padding-bottom: 7vw;
+}
+
+#connect h5{
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+#connect h3{
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#footer{
+    color: white;
+    background-color: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 30px;
+}
+
+
+
+/* The side navigation menu */
+.sidenav {
+  height: 100vh; 
+  width: 0; 
+  position: fixed; 
+  z-index: 1;
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: rgb(42, 39, 39);
+  opacity: 0.8;
+  overflow-x: hidden; 
+  padding-top: 50px; 
+  transition: 0.5s; 
+}
+
+/* The navigation menu links */
+.sidenav a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; 
+    padding: 8px 100px 8px 8px;
+    padding-top: 10px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    z-index: 999;
+    position: relative;
+    transition: 0.3s;
+}
+
+.sidenav button {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 30px;
+    margin-left: 50px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size)
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} */
+

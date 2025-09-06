@@ -12,7 +12,8 @@
 <body>
     <!-- <h1>Ishant</h1> -->
      <div id="cursorcircle">
-
+        <div class="cursor-btn">VIEW</div>
+        <!-- <button class="cursor-btn">VIEW</button> -->
      </div>
     <div id="main" data-scroll-container>
         <div id="home">
@@ -52,20 +53,24 @@
         <div class="dummyelem">
 
         </div>
-        <div class="elem">
+        <div class="elem" data-link="https://www.google.com">
+            <!-- <button class="cursor-btn">Click</button> -->
             <img src="images/coffeeImg.jpg" alt="">
             <h1>Project 1</h1>
             <h5>2024</h5>
         </div>
-        <div class="elem">
+        <div class="elem" data-link="https://www.bing.com">
             <img src="images/imageholder2.jpg" alt="">
             <h1>Project 2</h1>
             <h5>2024</h5>
         </div>
-        <div class="elem elemlast">
+        <div class="elem elemlast" data-link="https://www.duckduckgo.com">
             <img src="images/imageholder2.jpg" alt="">
             <h1>Project 2</h1>
             <h5>2024</h5>
+        </div>
+        <div class="allProjects">
+            <a href="">View all projects</a>
         </div>
     </div> 
     
@@ -75,7 +80,7 @@
         <div id="textabout">
             <h5>(About me)</h5>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis voluptatibus ducimus, cum consequatur modi repudiandae nulla itaque, delectus quod facilis dignissimos vero? Neque voluptatem placeat, omnis id quae recusandae nemo.
+                I’m Ishant Kamboj, and my journey in tech started with curiosity about how machines “think.” That curiosity evolved into a passion for AI, machine learning, and automation. Along the way, I’ve built apps, trained models, and even worked at Nokia to solve real-world problems with data and automation. Today, I’m focused on creating intelligent systems that are not just innovative, but also meaningful for people who use them.
             </p>
             <a href="">Let's Talk</a>
         </div>
@@ -88,18 +93,24 @@
     
     <div id="footer">
         <!-- <div id="footerleft"> -->
-            <h5 id="year">2025</h5>
-            <h5 id="time">03:50 PM IST</h5>
+            <div id="footerLeft">
+                <h5 id="year">2025</h5>
+                <h5 id="time">03:50 PM IST</h5>
+            </div>
+            
+            <div id="footerContact">
+                <h5 id="githubLink">Github</h5>
+                <!-- <h5 id="emailLink">Email</h5> -->
 
+            </div>
+            
     </div>
 
-    </div>
     <div id="mySidenav" class="sidenav">
                     <button id="closebtn" onclick="closeNav()">&times;</button>
                     <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
-                    <a href="#">About</a>
-                    <a href="#">Services</a>
-                    <a href="#">Clients</a>
+                    <a href="#" id="about_nav">About</a>
+                    <a href="#" id="project_nav">Projects</a>
                     <a href="#">Contact</a>
                 </div>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>

@@ -4,6 +4,11 @@
     font-family: "General Sans";
     box-sizing: border-box;
 }
+:root {
+  --background-color: black;
+  /* --secondary-color: #e74c3c; */
+  --font-color: white;
+}
 
 html,body{
     width: 100%;
@@ -16,19 +21,41 @@ html,body{
     position: fixed;
     top: 0;
     left: 0;
-    width: 12px;  /* your size */
+    width: 12px;  
     height: 12px;
     background: white;
     border-radius: 50%;
-    pointer-events: none; /* let clicks pass through */
-    z-index: 999; /* always on top */
+    pointer-events: none; 
+    z-index: 999; 
     will-change: transform; /* GPU acceleration */
+
+    pointer-events: none;
 }
+
+#cursorcircle .cursor-btn {
+    transition: cubic-bezier(0.19, 1, 0.22, 1) 0.2s;
+    opacity: 0;
+    position: fixed;        /* 🔥 must be absolute */
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    color: black;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 45px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* pointer-events: none; */
+}
+
 
 
 #main{
     width: 100%;
-    background-color: black;
+    background-color: var(--background-color);
 }
 
 .bounding{
@@ -46,14 +73,14 @@ html,body{
     padding-top: 10px;
     width: 100%;
     height: 100vh;
-    background-color: black;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--font-color);
 
 }
 
 #nav{
     display: flex;
-    color: white;
+    color: var(--font-color);
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -64,7 +91,7 @@ html,body{
 #nav a{
     text-decoration: none;
     font-size: 20px;
-    color: white;
+    color: var(--font-color);
 }
 #menuBtn {
   opacity: 1;
@@ -93,7 +120,7 @@ html,body{
     display: flex;
     flex-direction: column;
     align-items: end;
-    color: white;
+    color: var(--font-color);
     opacity: 0.8;
     font-size: 3.5vw;
     margin-top: 10vh;
@@ -114,7 +141,7 @@ html,body{
 
 #homefooter a{
     text-decoration: none;
-    color: white;
+    color: var(--font-color);
     text-transform: uppercase;
 }
 
@@ -129,8 +156,8 @@ html,body{
     width: 100%;
     min-height: 100vh;
     position: relative;
-    color: white;
-    background-color: black;
+    color: var(--font-color);
+    background-color: var(--background-color);
     /* padding-top: 200px; */
     padding-left: 3vw;
     padding-right: 8vw;
@@ -171,8 +198,26 @@ html,body{
     height: 140%;
     /* display: none; */
     position: absolute;
-    z-index: 999;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
 }
+
+.allProjects{
+    margin-top: 50px;
+}
+
+.allProjects a{
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    color: var(--font-color);
+    /* font-weight: 500; */
+    border: solid 1px white;
+    border-radius: 100px;
+}
+
+
 
 #about{
     display: flex;
@@ -180,11 +225,12 @@ html,body{
     /* justify-content: space-between; */
     gap: 50px;
     padding: 10vw 10vw;
+    padding-top: 15vw;
     padding-left: 25vw;
     width: 100vw;
     /* height: 100vh; */
-    background-color: black;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--font-color);
     /* padding-left: 30vw; */
 }
 
@@ -195,7 +241,7 @@ html,body{
 }
 
 #textabout{
-    width: 25rem;
+    width: 30rem;
 }
 
 #textabout h5{
@@ -214,7 +260,7 @@ html,body{
     text-decoration: none;
     padding: 10px 15px;
     font-size: 15px;
-    color: white;
+    color: var(--font-color);
     /* font-weight: 500; */
     border: solid 1px white;
     border-radius: 100px;
@@ -222,10 +268,10 @@ html,body{
 
 
 #connect{
-    color: white;
-    background-color: black;
+    color: var(--font-color);
+    background-color: var(--background-color);
     padding: 20px 20px;
-    padding-bottom: 7vw;
+    padding-bottom: 3vw;
 }
 
 #connect h5{
@@ -238,14 +284,30 @@ html,body{
     margin-top: 10px;
 }
 
+
 #footer{
     color: white;
-    background-color: black;
+    background-color: var(--background-color);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 40px 30px;
+    font-size: 20px;
+}
+
+
+#footer #footerLeft{
+    display: flex;
+    align-items: left;
+    gap: 20px;
+}
+
+
+#footer #footerContact{
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 

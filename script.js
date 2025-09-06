@@ -33,13 +33,8 @@ function firstPageAnim(){
 }
 
 
-// function circleMouseFollower(){
-//     window.addEventListener("mousemove", function(dets){
-//         // console.log(dets);
-//         document.querySelector("#cursorcircle").style.transform = `translate(${dets.x}px, ${dets.y}px)`;
-//     })
-// }
 
+// making the mouse follower circle follow mouse and scale based on speed
 function circleMouseFollower(xscale, yscale){
     const circle = document.querySelector("#cursorcircle");
     const rect = circle.getBoundingClientRect();
@@ -52,8 +47,7 @@ function circleMouseFollower(xscale, yscale){
 }
 
 
-
-// var timeout;
+// making the mouse follower circle squish on fast mouse move
 function circleMouseSquiser(){
     // clearTimeout(timeout);
     var xscale = 1;
@@ -68,8 +62,8 @@ function circleMouseSquiser(){
         xprev = dets.clientX;
         yprev = dets.clientY;
 
-        xscale = gsap.utils.clamp(0.8, 1.2, xdiff);
-        yscale = gsap.utils.clamp(0.8, 1.2, ydiff);
+        xscale = gsap.utils.clamp(0.9, 1.1, xdiff);
+        yscale = gsap.utils.clamp(0.9, 1.1, ydiff);
         // console.log(xscale, yscale);
 
         circleMouseFollower(xscale, yscale);
@@ -91,83 +85,170 @@ circleMouseFollower();
 firstPageAnim();
 
 
+// making images follow mouse on hover and rotate and follow link
+let curr_elem = null;
 
 document.querySelectorAll(".elem").forEach(function (elem) {
-  var rotate = 0;
-  var diffrot = 0;
+  let rotate = 0;
+  let diffrot = 0;
 
-  elem.addEventListener("mouseleave", function (dets) {
-    gsap.to(elem.querySelector("img"), {
+
+  const img = elem.querySelector("img");
+  const cursor = document.getElementById('cursorcircle');
+  const btn = document.querySelector("#cursorcircle .cursor-btn");
+
+  elem.addEventListener("mouseenter", () => {
+    curr_elem = elem;
+    // isInsideElem = true;
+  });
+
+  elem.addEventListener("mouseleave", function () {
+    // isInsideElem = false;
+    curr_elem = null;
+    // cursor.style.pointerEvents = "none";
+    gsap.to([img, btn], {
       opacity: 0,
       ease: Power3,
       duration: 0.5,
     });
-  });
-
-  elem.addEventListener("mousemove", function (dets) {
-    var diff = dets.clientY - elem.getBoundingClientRect().top;
-    diffrot = dets.clientX - rotate;
-    rotate = dets.clientX;
-    gsap.to(elem.querySelector("img"), {
+    gsap.to(cursor, {
       opacity: 1,
-      ease: Power3,
-      top: diff,
-      left: dets.clientX,
-      rotate: gsap.utils.clamp(-20, 20, diffrot * 0.5),
+      width:12,
+      height:12
     });
   });
+
+  
+
+  elem.addEventListener("mousemove", function (dets) {
+    const rect = elem.getBoundingClientRect();
+
+    // Mouse position relative to elem
+    const mouseX = dets.clientX - rect.left;
+    const mouseY = dets.clientY - rect.top;
+
+    // Rotation calculation
+    diffrot = dets.clientX - rotate;
+    rotate = dets.clientX;
+
+    // btn.style.pointerEvents = "auto";
+
+    gsap.to(img, {
+      opacity: 1,
+      ease: Power3,
+      top: mouseY,
+      left: mouseX,
+      rotate: gsap.utils.clamp(-20, 20, diffrot * 0.5),
+    });
+
+    gsap.to(cursor, {
+      opacity: 0.8,
+      width:90,
+        height:90,
+      ease: Power3
+    });
+
+    gsap.to(btn, {
+      opacity: 1,
+    });
+
+    // cursor.style.pointerEvents = "auto";
+
+  });
+  
+});
+
+document.addEventListener("click", () => {
+    const link = curr_elem.getAttribute("data-link");
+    if(link ) {
+        window.open(link, "_blank");
+    }
 });
 
 
-// const buttons = document.querySelectorAll('#iconset .circle');
 
-// buttons.forEach(btn =>
-// {
-//     btn.addEventListener('click', ()=>{
-//         document.getElementById('secondpage').scrollIntoView({behavior: 'smooth'});
-//     })
-// }
-// )
-
-const buttons = document.querySelectorAll('#iconset .circle');
+// using arrow buttons to scroll to next section
+const arrow_buttons = document.querySelectorAll('#iconset .circle');
 const secondPage = document.querySelector('#secondpage');
 
-buttons.forEach(btn => {
+arrow_buttons.forEach(btn => {
   btn.addEventListener('click', () => {
     scroll.scrollTo(secondPage); // Locomotive handles the smooth scroll
   });
+  btn.addEventListener('mouseover', () => {
+    gsap.to(btn, { opacity: 0.5});
+  });
+    btn.addEventListener('mouseout', () => {
+    gsap.to(btn, { opacity: 1});
+    });
+
 });
 
-document.querySelector('#connect h3 i').addEventListener('click', () => {
+
+
+// using nav buttons to scroll to sections
+project_nav = document.getElementById('project_nav');
+project_nav.addEventListener('click', () => {
+    scroll.scrollTo(secondPage); // Locomotive handles the smooth scroll
+});
+
+about_nav = document.getElementById('about_nav');
+about_nav.addEventListener('click', () => {
+    scroll.scrollTo('#about'); // Locomotive handles the smooth scroll
+});
+
+
+// using linkdin arrow icon
+linkdin_icon = document.querySelector('#connect h3 i');
+linkdin_icon.addEventListener('mouseover', () => {
+    gsap.to(linkdin_icon, { opacity: 0.5});
+});
+linkdin_icon.addEventListener('mouseout', () => {
+    gsap.to(linkdin_icon, { opacity: 1});
+});
+linkdin_icon.addEventListener('click', () => {
     window.open("https://www.linkedin.com/in/ishant-kamboj-a1268519a/", "_blank"); 
 });
 
 
+// setting up Menu button to open side nav
 
-/* Set the width of the side navigation to 250px */
+menuBtn = document.getElementById("menuBtn");
+let menuClicked = false;
+
 function openNav() {
+    menuClicked = true;
   document.getElementById("mySidenav").style.width = "300px";
-  document.getElementById("menuBtn").style.opacity = 0;
+  gsap.to("#menuBtn", { opacity: 0});
 }
 
 /* Set the width of the side navigation to 0 */
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
-
+    menuClicked = false;
   setTimeout(() => {
-    document.getElementById("menuBtn").style.opacity = 1;
+    menuBtn.style.opacity = 1;
   }, 300); // 500 ms = 0.5s
 }
 
-document.getElementById("menuBtn").addEventListener("click", openNav);
+menuBtn.addEventListener("click", openNav);
+menuBtn.addEventListener("mouseover", () => {
+    gsap.to("#menuBtn", { opacity: 0.5});
+});
+menuBtn.addEventListener("mouseout", () => {
+    if(!menuClicked){
+    gsap.to("#menuBtn", { opacity: 1});}
+});
+
 document.getElementById("closebtn").addEventListener("click", closeNav);
 
 
 
 function updateFooterTime() {
     const now = new Date();
-    console.log(now);
+    // console.log(now);
     // Year
+    
     document.getElementById("year").textContent = now.getFullYear();
 
     // Time in hh:mm AM/PM
@@ -180,7 +261,25 @@ function updateFooterTime() {
     document.getElementById("time").textContent = timeString;
   }
 
-  // Run once immediately
-  updateFooterTime();
-  // Update every minute
-  setInterval(updateFooterTime, 60000);
+updateFooterTime();
+setInterval(updateFooterTime, 60000);
+
+// contact links
+
+
+const githubLink = document.querySelector('#footerContact #githubLink');
+githubLink.addEventListener('click', () => {
+    window.open("https://github.com/ishant-afk", "_blank"); 
+  });
+
+  githubLink.addEventListener('mouseover', () => {
+    gsap.to(githubLink, { opacity: 0.5});
+  });
+
+  githubLink.addEventListener('mouseout', () => {
+    gsap.to(githubLink, { opacity: 1});
+  });
+
+
+
+

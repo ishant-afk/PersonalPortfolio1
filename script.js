@@ -118,7 +118,6 @@ document.querySelectorAll(".elem").forEach(function (elem) {
     });
   });
 
-  
 
   elem.addEventListener("mousemove", function (dets) {
     const rect = elem.getBoundingClientRect();
@@ -151,6 +150,7 @@ document.querySelectorAll(".elem").forEach(function (elem) {
     gsap.to(btn, {
       opacity: 1,
     });
+    
 
     // cursor.style.pointerEvents = "auto";
 
@@ -197,16 +197,23 @@ about_nav.addEventListener('click', () => {
     scroll.scrollTo('#about'); // Locomotive handles the smooth scroll
 });
 
+// connect_nav = document.getElementById('connect_nav');
+// about_nav.addEventListener('click', () => {
+//     scroll.scrollTo('#footer'); // Locomotive handles the smooth scroll
+// });
 
 // using linkdin arrow icon
 linkdin_icon = document.querySelector('#connect h3 i');
-linkdin_icon.addEventListener('mouseover', () => {
-    gsap.to(linkdin_icon, { opacity: 0.5});
+linkdin = document.querySelector('#connect h3');
+linkdin.addEventListener('mouseover', () => {
+    gsap.to(linkdin, { opacity: 0.5});
+    gsap.to(linkdin_icon, { className: 'ri-arrow-up-line'});
 });
-linkdin_icon.addEventListener('mouseout', () => {
-    gsap.to(linkdin_icon, { opacity: 1});
+linkdin.addEventListener('mouseout', () => {
+    gsap.to(linkdin, { opacity: 1});
+    gsap.to(linkdin_icon, { className: 'ri-arrow-right-up-line'});
 });
-linkdin_icon.addEventListener('click', () => {
+linkdin.addEventListener('click', () => {
     window.open("https://www.linkedin.com/in/ishant-kamboj-a1268519a/", "_blank"); 
 });
 
@@ -267,7 +274,7 @@ setInterval(updateFooterTime, 60000);
 // contact links
 
 
-const githubLink = document.querySelector('#footerContact #githubLink');
+const githubLink = document.querySelector('#footerConnect #githubLink');
 githubLink.addEventListener('click', () => {
     window.open("https://github.com/ishant-afk", "_blank"); 
   });
